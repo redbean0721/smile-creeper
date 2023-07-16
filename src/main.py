@@ -16,4 +16,9 @@ async def on_ready():
 async def hello(ctx):
     await ctx.respond("Hey!")
 
-bot.run(os.getenv('TOKEN')) # run the bot with the token
+for filename in os.listdir('./src/cmds'):
+    if filename.endswith('.py'):
+        bot.load_extension(f'cmds.{filename[:-3]}')
+
+if __name__ == '__main__': 
+    bot.run(os.getenv('TOKEN')) # run the bot with the token
